@@ -17,7 +17,7 @@ form_id = ""
 url = f"https://docs.google.com/forms/d/e/{form_id}/formResponse"
 
 if form_id == "":
-    print("You need to update the form ID in the source code...")
+    print("You need to update the form ID (and questions) in the source code...")
     exit()
 
 for entry in os.listdir(directory_to_scan):
@@ -26,8 +26,8 @@ for entry in os.listdir(directory_to_scan):
         last_dot = len(entry)
     # update the dictionary to reflect your own Form Question IDs
     # (Use the pre-filled link as a guide)
-    data = {"entry.1486224241": entry[:last_dot],
-            "entry.677322713": this_location}
+    data = {"entry.yyyyyyyyy": entry[:last_dot],
+            "entry.zzzzzzzzz": this_location}
     request = requests.post(url, data)
     print(entry[:last_dot], request.status_code)
     request.close()
