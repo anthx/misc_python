@@ -21,17 +21,21 @@ if form_id == "":
     exit()
 
 for entry in os.listdir(directory_to_scan):
-    last_dot = entry.rfind(".")
-    if last_dot == -1:
-        last_dot = len(entry)
-    # update the dictionary to reflect your own Form Question IDs
-    # (Use the pre-filled link as a guide)
-    data = {"entry.yyyyyyyyy": entry[:last_dot],
-            "entry.zzzzzzzzz": this_location}
-    request = requests.post(url, data)
-    print(entry[:last_dot], request.status_code)
-    request.close()
+    if entry != sys.argv[0]:
+        if os.path.isfile(os.path.join(directory_to_scan, entry)):
+            last_dot = entry.rfind(".")
+            if last_dot == -1:
+                last_dot = len(entry)
+        else:
+            last_dot = len(entry)
+        # update the dictionary to reflect your own Form Question IDs
+        # (Use the pre-filled link as a guide)
+        data = {"entry.yyyyyyyyy": entry[:last_dot],
+                "entry.zzzzzzzzz": this_location}
+        request = requests.post(url, data)
+        print(entry[:last_dot], request.status_code)
+        request.close()
 
-    # let's pause for a couple of seconds to be a nice internet citizen
-    time.sleep(2)
+        # let's pause for a couple of seconds to be a nice internet citizen
+        # time.sleep(2)
 
