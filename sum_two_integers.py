@@ -14,14 +14,14 @@ def sum_v(a, v):
     map dict operations.
     """
     dict = {}
-    for integer, x in enumerate(a):
-        dict[integer] = "x"
+    for x in a:
         y = v - x
         if y in dict.keys():
+            print("v =",y, "+", x)
             return True
-        
+        dict[x] = "x"
     return False
 
 print(sum_v(a, 15))
-
+print(sum_v(a, 18))
 print(sum_v(a, 2))
